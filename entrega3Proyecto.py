@@ -18,7 +18,7 @@ porcentajeHablantes = [0.52, 0.16]
 porcentajeDentroDeNicho = [0.03, 0.013]
 costoUbicacion[20/1000, 28/1000]
 costoPorImpresion = [66/1000, 1/1000, 10/1000]
-
+'''
 #Habitantes por Pais con Facebook
 numeroHabitantes[1] = 33000000  #Colombia
 numeroHabitantes[2] = 230000000 #E.E.U.U.
@@ -51,6 +51,7 @@ costoUbicacion[2] = 28/1000 #Instagram
 costoPorImpresion[1] = 66/1000 #Colombia
 costoPorImpresion[2] = 1/1000 #E.E.U.U.
 costoPorImpresion[3] = 10/1000 #UK
+'''
 
 for nh in range(len(numeroHabitantes)):
     numHabTemp = numeroHabitantes(nh)
@@ -66,4 +67,5 @@ for nh in range(len(numeroHabitantes)):
                         costUb = costoUbicacion(cu)
                         for ci in range(len(costoPorImpresion)):
                             costImp = costoPorImpresion(ci)
+                            
                             
