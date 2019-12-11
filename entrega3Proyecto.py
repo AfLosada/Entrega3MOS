@@ -16,7 +16,7 @@ costoObjetivo = [0.7, 1, 0.6, 0.2, 0.1]
 porcentajeSexo = [0.62, 0.38]
 porcentajeHablantes = [0.52, 0.16]
 porcentajeDentroDeNicho = [0.03, 0.013]
-costoUbicacion[20/1000, 28/1000]
+costoUbicacion = [20/1000, 28/1000]
 costoPorImpresion = [66/1000, 1/1000, 10/1000]
 '''
 #Habitantes por Pais con Facebook
@@ -53,19 +53,39 @@ costoPorImpresion[2] = 1/1000 #E.E.U.U.
 costoPorImpresion[3] = 10/1000 #UK
 '''
 
-for nh in range(len(numeroHabitantes)):
-    numHabTemp = numeroHabitantes(nh)
-    for co in range(len(costoObjetivo)):
-        costObj = costoObjetivo(co)
-        for ps in range(len(porcentajeSexo)):
-            porSex = porcentajeSexo(ps)
-            for ph in range(len(porcentajeHablantes)):
-                porHab = porcentajeHablantes(ph)
-                for pn in range(len(porcentajeDentroDeNicho)):
-                    porNich = porcentajeDentroDeNicho(pn)
-                    for cu in range(len(costoUbicacion)):
-                        costUb = costoUbicacion(cu)
-                        for ci in range(len(costoPorImpresion)):
-                            costImp = costoPorImpresion(ci)
-                            
-                            
+maximo = 0 #Indice del Arreglo de máximos
+estadoMaximo = [] #Indice dle arreglo de estados
+estados = []
+respuestas = []
+presupuesto = 600
+
+def poblacion(p, s, i, n):
+    return (numeroHabitantes[p] * porcS(s) * porcIyN(i,n))
+
+def porcS(s):
+    return porcentajeSexo[s]
+
+def costosExtra(u, o, p):
+    return costoPorImpresion[p] * (costoObjetivo[o]) * (costoUbicacion[u])
+
+def porcIyN(i, n):
+    return porcentajeHablantes[i] * porcentajeDentroDeNicho[n]
+
+
+for p in range(0, len(numeroHabitantes)):
+    for o in range(0, len(costoObjetivo)):
+        for s in range(0, len(porcentajeSexo)):
+            for n in range(0, len(porcentajeDentroDeNicho)):
+                for u in range(0, len(costoUbicacion)):
+                    for i in range(0, len(porcentajeHablantes)):
+                        resAct = poblacion(p,s,i,n) * presupuesto * costosExtra(u,o,p)
+                        respuestas = respuestas + [resAct]
+                        estados = estados + [p, o, s, n, u, i]
+                        if resAct > maximo:
+                            maximo = resAct
+                            estadoMaximo = [p, o, s, n, u, i]
+
+                        
+
+print(maximo)
+print(estadoMaximo)
