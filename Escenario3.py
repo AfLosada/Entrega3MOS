@@ -18,7 +18,7 @@ porcentajeHablantes = [0.52, 0.16]
 porcentajeDentroDeNicho = [0.03, 0.013]
 costoUbicacion = [20/1000, 28/1000]
 costoPorImpresion = [66/1000, 1/1000, 10/1000]
-presupuesto = 600
+presupuesto = 6400
 
 '''
 #Habitantes por Pais con Facebook
@@ -79,12 +79,13 @@ for p in range(0, len(numeroHabitantes)):
             for n in range(0, len(porcentajeDentroDeNicho)):
                 for u in range(0, len(costoUbicacion)):
                     for i in range(0, len(porcentajeHablantes)):
-                        resAct = poblacion(p,s,i,n) * presupuesto * costosExtra(u,o,p)
-                        respuestas = respuestas + [resAct]
-                        estados = estados + [p, o, s, n, u, i]
-                        if resAct > maximo:
-                            maximo = resAct
-                            estadoMaximo = [p, o, s, n, u, i]
+                        if(i == 0):
+                            resAct = poblacion(p,s,i,n) * presupuesto * costosExtra(u,o,p)
+                            respuestas = respuestas + [resAct]
+                            estados = estados + [p, o, s, n, u, i]
+                            if resAct > maximo:
+                                maximo = resAct
+                                estadoMaximo = [p, o, s, n, u, i]
 
                         
 
